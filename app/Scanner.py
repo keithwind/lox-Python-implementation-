@@ -55,13 +55,14 @@ class Token:
         self.line = line
 
     def __str__(self) -> str:
-        return f"{self.type} {self.lexeme} {self.literal}"
+        literal = self.literal if self.literal is not None else 'null'
+        return f"{self.type.name} {self.lexeme} {literal}"
 
 
 class Scanner:
     def __init__(self, source: str):
         self.source = source
-        self.token = []
+        self.tokens = []
         self.start = 0
         self.current = 0
         self.line = 1
@@ -131,6 +132,7 @@ class Scanner:
         self.advance()
         value = self.source[self.start + 1:self.current - 1]
         self.add_token(TokenType.STRING,value)
+        
     def numbers(self):
         while (self.isDigit(self.peek())):
             self.advance()
@@ -154,10 +156,9 @@ class Scanner:
         """Main loop to scan through the source and generate tokens."""
         while not self.is_at_end():
             self.start = self.current
-            self.scan_token()
-
-        self.tokens.append({"type": "EOF", "literal": None, "line": self.line})
-
+            c = self.advance()
+            self.scan_token(c)
+        self.add_token(TokenType.EOF)
 
     def scan_token(self,c:str):
         self.c = c
@@ -212,3 +213,7 @@ class Scanner:
     
     def reportError(self,line,message):
         print(f"[Line{line}] Error:{message}")
+    
+    def print_tokens(self):
+        for token in self.tokens:
+            print(token)

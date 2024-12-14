@@ -1,8 +1,8 @@
 import sys
-import Scanner
+from Scanner import Scanner
 
 def main():
-    print("Logs from your program will appear here!", file=sys.stderr)
+   # print("Logs from your program will appear here!", file=sys.stderr)
 
     if len(sys.argv) < 3:
         print("Usage: ./your_program.sh tokenize <filename>", file=sys.stderr)
@@ -21,7 +21,8 @@ def main():
     # Uncomment this block to pass the first stage
     if file_contents:
         s = Scanner(file_contents)
-    
+        s.scan_tokens()
+        s.print_tokens()
     
 
 if __name__ == "__main__":
