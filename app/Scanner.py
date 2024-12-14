@@ -109,7 +109,7 @@ class Scanner:
 
 
     def add_token(self,type:TokenType, literal=None):
-        text = self.source[self.start:self.current]
+        text = self.source[self.start:self.current] 
         token = Token(type, text, literal, self.line)
         self.tokens.append(token)
 
@@ -158,6 +158,7 @@ class Scanner:
             self.start = self.current
             c = self.advance()
             self.scan_token(c)
+        self.start = self.current 
         self.add_token(TokenType.EOF)
 
     def scan_token(self,c:str):
