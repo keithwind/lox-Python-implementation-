@@ -1,5 +1,5 @@
 import sys
-from Scanner import Scanner
+from app.Scanner import Scanner
 
 def main():
    # print("Logs from your program will appear here!", file=sys.stderr)
