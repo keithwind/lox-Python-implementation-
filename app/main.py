@@ -19,10 +19,10 @@ def main():
         file_contents = file.read()
 
     # Uncomment this block to pass the first stage
-    if file_contents:
-        s = Scanner(file_contents)
-        s.scan_tokens()
-        s.print_tokens()
+    
+    s = Scanner(file_contents)
+    s.scan_tokens()
+    s.print_tokens()
     
 
 if __name__ == "__main__":
