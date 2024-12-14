@@ -1,5 +1,5 @@
 import sys
-
+import Scanner
 
 def main():
     print("Logs from your program will appear here!", file=sys.stderr)
@@ -20,10 +20,9 @@ def main():
 
     # Uncomment this block to pass the first stage
     if file_contents:
-        raise NotImplementedError("Scanner not implemented")
-    else:
-        print("EOF  null") # Placeholder, remove this line when implementing the scanner
-
+        s = Scanner(file_contents)
+    
+    
 
 if __name__ == "__main__":
     main()
